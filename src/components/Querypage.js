@@ -20,6 +20,7 @@ export default function QueryPage(){
     return (
         <div>
             {renderQueries}
+            <Query /> 
             <Button variant="contained">Send</Button>
         </div>
     );
