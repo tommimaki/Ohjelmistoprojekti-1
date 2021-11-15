@@ -1,7 +1,7 @@
 import React from 'react';
 import question from './Querypage';
 import { border } from '@mui/system';
-import { FormControl, FormLabel, RadioGroup, Radio, FormControlLabel, Grid, Button } from '@mui/material';
+import { TextField, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel, Grid, Button } from '@mui/material';
 
 
 
@@ -23,7 +23,12 @@ export default function Query(props) {
                         <FormControlLabel value="3" control={<Radio />} label="3" />
                         
                     </RadioGroup>
+
+                    <TextField id="outlined-basic" label="Name" variant="outlined" />
+                    
                 </FormControl>
+
+
 
             </Grid>
         </Grid>
