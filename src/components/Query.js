@@ -21,7 +21,7 @@ export default function Query(props) {
                         <FormControlLabel value="1" control={<Radio />} label="1" />
                         <FormControlLabel value="2" control={<Radio />} label="2" />
                         <FormControlLabel value="3" control={<Radio />} label="3" />
-                        <Button variant="contained">Save answer</Button>
+                        
                     </RadioGroup>
                 </FormControl>
 
