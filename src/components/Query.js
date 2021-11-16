@@ -1,11 +1,13 @@
 import React from 'react';
-import question from './Querypage';
-import { border } from '@mui/system';
-import { TextField, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel, Grid, Button } from '@mui/material';
+import question from './Fetch';
+import { TextField, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel, Grid} from '@mui/material';
 
 
 
 export default function Query(props) {
+
+
+    
     return <div>
         <Grid container spacing={4} alignItems="center"
             justifyContent="center" style={{ minHeight: '220px' ,border: "1px solid grey"}} >
@@ -28,9 +30,10 @@ export default function Query(props) {
                     
                 </FormControl>
 
-
-
             </Grid>
         </Grid>
+
+       <h5> {question.type} </h5>
+        
     </div>;
 }
