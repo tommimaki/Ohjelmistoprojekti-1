@@ -6,6 +6,7 @@ import { TextField, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel,
 export default function Query() {
 
 
+    //api call
     const [question, setQuestion] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -25,33 +26,47 @@ export default function Query() {
     }, []);
     if (loading) return <h5>Questions loading...</h5>
 
+    //questions array
+    const questJsx = [];
+
+    //looppaa arrayn, tekee kysymyksen ja vastausvaihtoehdot
+    question.forEach(kys => {
+        questJsx.push(
+
+            <div key={kys.id}>
+                <Grid container spacing={4} alignItems="center"
+                    justifyContent="center" >
+                      <Grid item>  
+                    <FormControl component="fieldset">
+                        <FormLabel component="legend"> {kys.description} </FormLabel>
+                        <RadioGroup
+                            aria-label="kysymys"
+                            defaultValue=""
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel value="1" control={<Radio />} label={kys.answers[0]} />
+                            <FormControlLabel value="2" control={<Radio />} label={kys.answers[1]} />
+                            <FormControlLabel value="3" control={<Radio />} label={kys.answers[2]} />
+                            <FormControlLabel value="4" control={<Radio />} label={kys.answers[3]} />
+
+                        </RadioGroup>
+
+
+                    </FormControl>
+                    </Grid>
+                </Grid>
+            </div>
+        );
+
+    });
+
+
 
     return <div>
+        
+        {questJsx}
+        <TextField id="outlined-basic" label="Name" variant="outlined" />
 
-        <Grid container spacing={4} alignItems="center"
-            justifyContent="center" style={{ minHeight: '220px', border: "1px solid grey" }} >
-            <Grid item>
 
-
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">{question.map(question => <div>{question.description}</div>)}
-                    </FormLabel>
-                    <RadioGroup
-                        aria-label="kysymys"
-                        defaultValue=""
-                        name="radio-buttons-group"
-                    >
-                        <FormControlLabel value="1" control={<Radio />} label="1" />
-                        <FormControlLabel value="2" control={<Radio />} label="2" />
-                        <FormControlLabel value="3" control={<Radio />} label="3" />
-
-                    </RadioGroup>
-
-                    <TextField id="outlined-basic" label="Name" variant="outlined" />
-
-                </FormControl>
-
-            </Grid>
-        </Grid>
     </div>;
 }
