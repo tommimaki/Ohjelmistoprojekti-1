@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Query from './Query';
 
+
+
 import Button from '@mui/material/Button';
 
 export default function QueryPage(){
@@ -20,6 +22,7 @@ export default function QueryPage(){
     return (
         <div>
             {/* {renderQueries} */}
+            
             <Query /> 
             <Button variant="contained">Send</Button>
         </div>
