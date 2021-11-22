@@ -8,8 +8,7 @@ export default function Query(props) {
     if(props.query.type === "radio"){
        return (
         <div key={props.query.id}>
-            <Grid container spacing={4} alignItems="center"
-                justifyContent="center" >
+            <Grid  sx={{paddingTop: 8 }}>
                 <Grid item>  
                 <FormControl component="fieldset">
                     <FormLabel component="legend"> {props.query.description} </FormLabel>

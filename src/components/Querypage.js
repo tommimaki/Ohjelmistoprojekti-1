@@ -22,7 +22,7 @@ export default function QueryPage() {
         //TODO kerää vastaukset json taulukkoon ja POSTaa backendiin
 
 
-        const data = { nickname: 'testi', answers: query.answers };
+        const data = { nickname: 'testi', answers: '1,2' };
 
         fetch('https://queryapp-backend.herokuapp.com/groups/ID/answers', {
             method: 'POST',
