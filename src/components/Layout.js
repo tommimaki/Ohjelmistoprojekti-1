@@ -3,7 +3,8 @@ import { ClassNames, ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 import { grey, blue } from '@mui/material/colors';
 import { AppBar, Toolbar, Typography } from '@mui/material';
-
+import { Icon, IconButton} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const custtheme = createTheme({
 
@@ -29,10 +30,14 @@ export default function Layout({ children }) {
             <ThemeProvider theme={custtheme}>
                 <AppBar>
                     <Toolbar>
-                        <Typography>
-                            Welcome to the queryapp
-                        </Typography>
+                        <IconButton>
+                        <MenuIcon />
+                        
 
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Welcome to queryapp
+          </Typography>
                     </Toolbar>
                 </AppBar>
 

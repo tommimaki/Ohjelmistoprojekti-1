@@ -49,8 +49,8 @@ export default function QueryPage() {
         return (
             <div>
                 {queries.map((query, index) => <Query query={query} />)}
-                <TextField id="outlined-basic" label="Name" variant="outlined" />
-                <Button variant="contained" onClick={handleSendAnswers}>Send</Button>
+                <TextField id="outlined-basic" label="Name" variant="outlined" sx={{marginTop: 2, padding:2}} />
+                <Button variant="contained" onClick={handleSendAnswers} sx={{marginTop: 4, padding: 2}}>Send</Button>
                 
             </div>
         );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel, Grid } from '@mui/material';
+import { borderLeft } from '@mui/system';
 
 
 //STATELESS COMPONENT
@@ -8,7 +9,7 @@ export default function Query(props) {
     if(props.query.type === "radio"){
        return (
         <div key={props.query.id}>
-            <Grid  sx={{paddingTop: 8, border: 1 }}>
+            <Grid  sx={{marginTop:9,paddingTop:0, border:1, borderRadius: 16, boxShadow: 4 }}>
                 <Grid item>  
                 <FormControl component="fieldset">
                     <FormLabel component="legend"> {props.query.description} </FormLabel>
