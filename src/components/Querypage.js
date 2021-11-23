@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Query from './Query';
 
 import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
 
 export default function QueryPage() {
     const [queries, setQueries] = useState([]);
@@ -48,7 +49,9 @@ export default function QueryPage() {
         return (
             <div>
                 {queries.map((query, index) => <Query query={query} />)}
+                <TextField id="outlined-basic" label="Name" variant="outlined" />
                 <Button variant="contained" onClick={handleSendAnswers}>Send</Button>
+                
             </div>
         );
     }

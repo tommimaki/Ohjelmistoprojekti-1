@@ -8,7 +8,7 @@ export default function Query(props) {
     if(props.query.type === "radio"){
        return (
         <div key={props.query.id}>
-            <Grid  sx={{paddingTop: 8 }}>
+            <Grid  sx={{paddingTop: 8, border: 1 }}>
                 <Grid item>  
                 <FormControl component="fieldset">
                     <FormLabel component="legend"> {props.query.description} </FormLabel>
