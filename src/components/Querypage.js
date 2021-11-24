@@ -8,6 +8,12 @@ export default function QueryPage() {
     const [queries, setQueries] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
+    const [postVal, setpostVal] = React.useState({
+        nickname: 'testname',
+        answers: 'ansans'
+    });
+
+
     useEffect(() => {
         //setQueries ( [{question: "kysymys", questionType: "radio", answers: [1, 2, 3]}] );
         fetch('https://queryapp-backend.herokuapp.com/groups/2/questions')
@@ -19,27 +25,27 @@ export default function QueryPage() {
             .catch(err => console.error(err));
     }, []);
 
+
+
+
     const handleSendAnswers = () => {
         //TODO kerää vastaukset json taulukkoon ja POSTaa backendiin
 
-
-        const data = { nickname: 'testi', answers: '1,2' };
-
-        fetch('https://queryapp-backend.herokuapp.com/groups/ID/answers', {
+        fetch('https://queryapp-backend.herokuapp.com/groups/2/answers', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(postVal)
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            .then(response => {
+                if (response.ok) {
+                    console.log('success', response)
+                } else {
+                    alert('error adding answers')
+                }
+            } )
+            .catch( err => console.error(err) );
     }
+
 
     if (!loaded) {
         return (
@@ -49,9 +55,9 @@ export default function QueryPage() {
         return (
             <div>
                 {queries.map((query, index) => <Query query={query} />)}
-                <TextField id="outlined-basic" label="Name" variant="outlined" sx={{marginTop: 2, padding:2}} />
-                <Button variant="contained" onClick={handleSendAnswers} sx={{marginTop: 4, padding: 2}}>Send</Button>
-                
+                <TextField id="name" label="Name" variant="outlined" sx={{ marginTop: 2, padding: 2 }} />
+                <Button variant="contained" onClick={handleSendAnswers} sx={{ marginTop: 4, padding: 2 }}>Send</Button>
+
             </div>
         );
     }
