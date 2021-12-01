@@ -1,65 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import Query from './Query';
+import React, { useState, useEffect } from "react";
+import Query from "./Query";
 
-import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 export default function QueryPage() {
-    const [queries, setQueries] = useState([]);
-    const [loaded, setLoaded] = useState(false);
+  const [queries, setQueries] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
-    const [postVal, setpostVal] = React.useState({
-        nickname: 'testname',
-        answers: 'ansans'
-    });
+  const [postVal, setpostVal] = React.useState({
+    nickname: "testname",
+    answers: "ansans",
+  });
 
+  useEffect(() => {
+    //setQueries ( [{question: "kysymys", questionType: "radio", answers: [1, 2, 3]}] );
+    fetch("https://queryapp-backend.herokuapp.com/groups/2/questions")
+      .then((response) => response.json())
+      .then((data) => {
+        setQueries(data);
+        setLoaded(true);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
-    useEffect(() => {
-        //setQueries ( [{question: "kysymys", questionType: "radio", answers: [1, 2, 3]}] );
-        fetch('https://queryapp-backend.herokuapp.com/groups/2/questions')
-            .then(response => response.json())
-            .then(data => {
-                setQueries(data);
-                setLoaded(true);
-            })
-            .catch(err => console.error(err));
-    }, []);
+  const handleSendAnswers = () => {
+    //TODO kerää vastaukset json taulukkoon ja POSTaa backendiin
 
+    fetch("https://queryapp-backend.herokuapp.com/groups/2/answers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postVal),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("success", response);
+        } else {
+          alert("error adding answers");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
 
-
-
-    const handleSendAnswers = () => {
-        //TODO kerää vastaukset json taulukkoon ja POSTaa backendiin
-
-        fetch('https://queryapp-backend.herokuapp.com/groups/2/answers', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(postVal)
-        })
-            .then(response => {
-                if (response.ok) {
-                    console.log('success', response)
-                } else {
-                    alert('error adding answers')
-                }
-            } )
-            .catch( err => console.error(err) );
-    }
-
-
-    if (!loaded) {
-        return (
-            <div>Loading questions.</div>
-        );
-    } else {
-        return (
-            <div>
-                {queries.map((query, index) => <Query query={query} />)}
-                <TextField id="name" label="Name" variant="outlined" sx={{ marginTop: 2, padding: 2 }} />
-                <Button variant="contained" onClick={handleSendAnswers} sx={{ marginTop: 4, padding: 2 }}>Send</Button>
-
-            </div>
-        );
-    }
-
+  if (!loaded) {
+    return <div>Loading questions.</div>;
+  } else {
+    return (
+      <div>
+        {queries.map((query, index) => (
+          <Query query={query} />
+        ))}
+        <TextField
+          id="name"
+          label="Name"
+          variant="outlined"
+          sx={{ marginTop: 2, padding: 2 }}
+        />
+        <Button
+          variant="contained"
+          onClick={handleSendAnswers}
+          sx={{ marginTop: 4, padding: 2 }}
+        >
+          Send
+        </Button>
+      </div>
+    );
+  }
 }
