@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Query from './Query';
-
 import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
 
@@ -9,10 +8,25 @@ export default function QueryPage() {
     const [loaded, setLoaded] = useState(false);
 
     const [postVal, setpostVal] = React.useState({
-        nickname: 'testname',
+        nickname: 'testiä',
         answers: 'ansans'
     });
 
+
+    const handleName = event =>{
+        const target = event.target
+        const nimi = target.value
+        console.log(nimi)  
+
+        setpostVal({
+            nickname : nimi
+        })
+    }
+
+   
+  
+
+    
 
     useEffect(() => {
         //setQueries ( [{question: "kysymys", questionType: "radio", answers: [1, 2, 3]}] );
@@ -27,9 +41,14 @@ export default function QueryPage() {
 
 
 
+  
+
+  
 
     const handleSendAnswers = () => {
-        //TODO kerää vastaukset json taulukkoon ja POSTaa backendiin
+        //TODO kerää vastaukset json taulukkoon ja POSTaa backendiin        
+        console.log(postVal);
+       
 
         fetch('https://queryapp-backend.herokuapp.com/groups/2/answers', {
             method: 'POST',
@@ -54,8 +73,8 @@ export default function QueryPage() {
     } else {
         return (
             <div>
-                {queries.map((query, index) => <Query query={query} />)}
-                <TextField id="name" label="Name" variant="outlined" sx={{ marginTop: 2, padding: 2 }} />
+                {queries.map((query, index) => <Query query={query}  />) }
+                <TextField id="name" label="Name" variant="outlined" onChange={handleName} sx={{ marginTop: 2, padding: 2 }} />
                 <Button variant="contained" onClick={handleSendAnswers} sx={{ marginTop: 4, padding: 2 }}>Send</Button>
 
             </div>
