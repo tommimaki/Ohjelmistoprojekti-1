@@ -35,6 +35,7 @@ export default function QueryPage() {
   }, []);
 
   const handleSendAnswers = (e) => {
+    console.log("postVal: " + JSON.stringify(postVal));
     fetch("https://queryapp-backend.herokuapp.com/groups/2/answers", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,7 +58,7 @@ export default function QueryPage() {
       <div>
         <form id="collection">
           {queries.map((query, index) => (
-            <Query query={query} handleAnswers={handleAnswers} />
+            <Query key={index} query={query} handleAnswers={handleAnswers} />
           ))}
 
           <TextField
