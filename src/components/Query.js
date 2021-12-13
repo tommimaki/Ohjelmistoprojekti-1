@@ -41,22 +41,20 @@ export default function Query(props) {
                 {" "}
                 {props.query.description}{" "}
               </FormLabel>
-              <form>
-                <RadioGroup
-                  aria-label="kysymys"
-                  defaultValue=""
-                  name="radio-buttons-group"
-                >
-                  {props.query.answers.map((answer, index) => (
-                    <FormControlLabel
-                      value={index}
-                      control={<Radio />}
-                      label={answer}
-                      onClick={handleInputChange}
-                    />
-                  ))}
-                </RadioGroup>
-              </form>
+              <RadioGroup
+                aria-label="kysymys"
+                defaultValue=""
+                name="radio-buttons-group"
+              >
+                {props.query.answers.map((answer, index) => (
+                  <FormControlLabel
+                    value={index}
+                    control={<Radio />}
+                    label={answer}
+                    onClick={handleInputChange}
+                  />
+                ))}
+              </RadioGroup>
             </FormControl>
           </Grid>
         </Grid>
@@ -80,12 +78,10 @@ export default function Query(props) {
                 {" "}
                 {props.query.description}{" "}
               </FormLabel>
-              <form>
-                <TextField
-                  fullWidth
-                  placeholder={"Answer for question id: " + props.query.id}
-                />
-              </form>
+              <TextField
+                fullWidth
+                placeholder={"Answer for question id: " + props.query.id}
+              />
             </FormControl>
           </Grid>
         </Grid>
