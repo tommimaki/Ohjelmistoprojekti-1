@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import Query from "./Query";
 
 import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 
 export default function QueryPage() {
   const [queries, setQueries] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [final, setFinal] = useState(false);
+  const [questionnaire, setQuestionnaire] = useState({ header: "", id: "" });
 
   const [postVal, setpostVal] = useState({
     nickname: "testname",
@@ -30,6 +31,10 @@ export default function QueryPage() {
       .then((response) => response.json())
       .then((data) => {
         setQueries(data);
+        setQuestionnaire({
+          id: data[0].group.qgroupid,
+          header: data[0].group.title,
+        });
         setLoaded(true);
       })
       .catch((err) => console.error(err));
@@ -72,6 +77,9 @@ export default function QueryPage() {
     return (
       <div>
         <form id="collection">
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, mt: 10 }}>
+            {questionnaire.header}
+          </Typography>
           {queries.map((query, index) => (
             <Query key={index} query={query} handleAnswers={handleAnswers} />
           ))}
