@@ -18,7 +18,7 @@ export default function Query(props) {
       <div key={props.query.id}>
         <Grid
           sx={{
-            marginTop: 9,
+            marginTop: 2,
             paddingTop: 0,
             border: 1,
             borderRadius: 16,
