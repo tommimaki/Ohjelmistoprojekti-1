@@ -7,21 +7,28 @@ import {
   FormControlLabel,
   Grid,
   TextField,
+  Button
 } from "@mui/material";
 import { useState } from "react";
 
+
 //STATELESS COMPONENT
 export default function Query(props) {
-  const [vastaukset, setVastaukset] = useState({});
+  const [vastaukset, setVastaukset] = useState([]);
+ 
+
+  const handleClick = () => {
+    if(vastaukset.length > 0){
+    props.addAnswers(vastaukset)
+    }
+  };
 
   const handleInputChange = (event) => {
     event.persist();
-    setVastaukset((vastaukset) => ({
-      ...vastaukset,
-      [props.query.id]: event.target.value,
-    }));
-    console.log(vastaukset);
+    setVastaukset([' kysymys:' + props.query.id, ' vastaus:' + event.target.value])
   };
+
+
 
   if (props.query.type === "radio") {
     return (
@@ -51,10 +58,11 @@ export default function Query(props) {
                     value={index}
                     control={<Radio />}
                     label={answer}
-                    onClick={handleInputChange}
+                    onChange={handleInputChange}
                   />
                 ))}
               </RadioGroup>
+              <Button variant='contained' onClick={handleClick}> tallenna </Button>
             </FormControl>
           </Grid>
         </Grid>
