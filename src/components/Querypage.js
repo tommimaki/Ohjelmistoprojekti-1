@@ -7,6 +7,7 @@ import { TextField } from "@mui/material";
 export default function QueryPage() {
   const [queries, setQueries] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [final, setFinal] = useState(false);
 
   const [postVal, setpostVal] = useState({
     nickname: "testname",
@@ -35,11 +36,25 @@ export default function QueryPage() {
   }, []);
 
   const handleSendAnswers = (e) => {
-    console.log("postVal: " + JSON.stringify(postVal));
+    setFinal({
+      nickname: postVal.nickname,
+      answers: JSON.stringify(postVal.answers) + "",
+    });
+  };
+
+  useEffect(() => {
+    sendToApi();
+  }, [final]);
+
+  const sendToApi = (e) => {
+    if (!final) {
+      return;
+    }
+    console.log(final);
     fetch("https://queryapp-backend.herokuapp.com/groups/2/answers", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(postVal),
+      body: JSON.stringify(final),
     })
       .then((response) => {
         if (response.ok) {
