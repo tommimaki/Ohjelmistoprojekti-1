@@ -23,7 +23,7 @@ export default function Query(props) {
             border: 0,
             borderRadius: 16,
             boxShadow: 2,
-            backgroundColor: "rgba(131, 197, 190, .2)",
+            backgroundColor: "white",
           }}
         >
           <Grid item>
