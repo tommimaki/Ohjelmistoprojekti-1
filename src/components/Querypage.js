@@ -69,7 +69,7 @@ export default function QueryPage(props) {
       return;
     }
     console.log(final);
-    fetch("https://queryapp-backend.herokuapp.com/groups/2/answers", {
+    fetch(`https://queryapp-backend.herokuapp.com/groups/${queryid}/answers`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(final),
