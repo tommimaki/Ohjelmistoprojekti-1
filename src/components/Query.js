@@ -20,9 +20,10 @@ export default function Query(props) {
           sx={{
             margin: 2,
             paddingTop: 0,
-            border: 1,
+            border: 0,
             borderRadius: 16,
-            boxShadow: 4,
+            boxShadow: 2,
+            backgroundColor: "rgba(131, 197, 190, .2)",
           }}
         >
           <Grid item>
@@ -41,7 +42,7 @@ export default function Query(props) {
                     key={index}
                     value={index}
                     name={props.query.id + ""}
-                    control={<Radio />}
+                    control={<Radio color="secondary" />}
                     label={answer}
                     onChange={handleAnswers}
                   />

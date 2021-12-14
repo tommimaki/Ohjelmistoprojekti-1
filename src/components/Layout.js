@@ -4,15 +4,18 @@ import { createTheme } from "@mui/material/styles";
 import { grey, blue } from "@mui/material/colors";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton } from "@mui/material";
+import { IconButton, CssBaseline } from "@mui/material";
 
 const custtheme = createTheme({
   palette: {
+    background: {
+      default: "#edf6f9",
+    },
     primary: {
-      main: grey[500],
+      main: "#006d77",
     },
     secondary: {
-      main: blue[500],
+      main: "#e29578",
     },
   },
 });
@@ -21,6 +24,7 @@ export default function Layout({ children }) {
   return (
     <div>
       <ThemeProvider theme={custtheme}>
+        <CssBaseline />
         <AppBar>
           <Toolbar>
             <IconButton>

@@ -85,7 +85,7 @@ export default function QueryPage() {
   };
 
   if (!loaded) {
-    return <div>Loading questions.</div>;
+    return <div style={{ marginTop: 20 + "vh" }}>Loading questions.</div>;
   } else {
     return (
       <div>
