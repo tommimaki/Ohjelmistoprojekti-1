@@ -1,14 +1,15 @@
-import './App.css';
-import Layout from './components/Layout';
+import { useState } from "react";
+import "./App.css";
+import Layout from "./components/Layout";
 
-
-import QueryPage from './components/Querypage';
+import QueryPage from "./components/Querypage";
 
 function App() {
+  const [queryid, setQueryid] = useState("1");
   return (
     <div className="App">
-      <Layout>
-      <QueryPage />
+      <Layout queryid={queryid} setQueryid={setQueryid}>
+        <QueryPage queryid={queryid} setQueryid={setQueryid} />
       </Layout>
     </div>
   );

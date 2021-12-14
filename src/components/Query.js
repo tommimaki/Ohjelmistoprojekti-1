@@ -24,6 +24,7 @@ export default function Query(props) {
             borderRadius: 16,
             boxShadow: 2,
             backgroundColor: "white",
+            padding: 2,
           }}
         >
           <Grid item>
@@ -55,7 +56,7 @@ export default function Query(props) {
     );
   } else if (props.query.type === "text") {
     return (
-      <div key={props.query.id}>
+      <div key={props.query.id} style={{ width: 100 + "%" }}>
         <Grid
           sx={{
             margin: 2,
@@ -64,10 +65,11 @@ export default function Query(props) {
             borderRadius: 16,
             boxShadow: 2,
             backgroundColor: "white",
+            padding: 2,
           }}
         >
           <Grid item>
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" style={{ width: 80 + "%" }}>
               <FormLabel component="legend">
                 {" "}
                 {props.query.description}{" "}

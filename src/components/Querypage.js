@@ -4,12 +4,13 @@ import Query from "./Query";
 import Button from "@mui/material/Button";
 import { TextField, Typography, Snackbar, Alert } from "@mui/material";
 
-export default function QueryPage() {
+export default function QueryPage(props) {
   const [queries, setQueries] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [final, setFinal] = useState(false);
   const [questionnaire, setQuestionnaire] = useState({ header: "", id: "" });
   const [open, setOpen] = useState(false);
+  const queryid = props.queryid;
 
   const snackClick = () => {
     setOpen(true);
@@ -39,7 +40,7 @@ export default function QueryPage() {
 
   useEffect(() => {
     //setQueries ( [{question: "kysymys", questionType: "radio", answers: [1, 2, 3]}] );
-    fetch("https://queryapp-backend.herokuapp.com/groups/2/questions")
+    fetch(`https://queryapp-backend.herokuapp.com/groups/${queryid}/questions`)
       .then((response) => response.json())
       .then((data) => {
         setQueries(data);
@@ -50,7 +51,7 @@ export default function QueryPage() {
         setLoaded(true);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [queryid]);
 
   const handleSendAnswers = (e) => {
     setFinal({
