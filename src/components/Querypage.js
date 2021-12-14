@@ -2,14 +2,26 @@ import React, { useState, useEffect } from "react";
 import Query from "./Query";
 
 import Button from "@mui/material/Button";
-import { TextField, Typography } from "@mui/material";
+import { TextField, Typography, Snackbar, Alert } from "@mui/material";
 
 export default function QueryPage() {
   const [queries, setQueries] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [final, setFinal] = useState(false);
   const [questionnaire, setQuestionnaire] = useState({ header: "", id: "" });
+  const [open, setOpen] = useState(false);
 
+  const snackClick = () => {
+    setOpen(true);
+  };
+
+  const snackClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   const [postVal, setpostVal] = useState({
     nickname: "testname",
     answers: {},
@@ -64,6 +76,7 @@ export default function QueryPage() {
       .then((response) => {
         if (response.ok) {
           console.log("success", response);
+          snackClick();
         } else {
           alert("error adding answers");
         }
@@ -91,6 +104,7 @@ export default function QueryPage() {
             variant="outlined"
             sx={{ marginTop: 2, padding: 2 }}
             onChange={setNickname}
+            required
           />
           <Button
             onClick={handleSendAnswers}
@@ -100,6 +114,16 @@ export default function QueryPage() {
             Send
           </Button>
         </form>
+        <Snackbar open={open} autoHideDuration={6000} onClose={snackClose}>
+          <Alert
+            onClose={snackClose}
+            variant="filled"
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Answers sent successfully!
+          </Alert>
+        </Snackbar>
       </div>
     );
   }
