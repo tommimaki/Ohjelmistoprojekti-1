@@ -58,11 +58,12 @@ export default function Query(props) {
       <div key={props.query.id}>
         <Grid
           sx={{
-            marginTop: 9,
+            margin: 2,
             paddingTop: 0,
-            border: 1,
+            border: 0,
             borderRadius: 16,
-            boxShadow: 4,
+            boxShadow: 2,
+            backgroundColor: "white",
           }}
         >
           <Grid item>
